@@ -10096,7 +10096,7 @@
       "type": "string"
     },
     "uploadType": {
-      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "description": "Legacyupload protocol for media (e.g. \"media\", \"multipart\").",
       "location": "query",
       "type": "string"
     },
