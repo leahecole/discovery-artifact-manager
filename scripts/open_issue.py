@@ -137,7 +137,7 @@ def create_issue() -> str:
             "issue",
             "create",
             "--title",
-            ISSUE_TITLE
+            ISSUE_TITLE,
             "--body",
             ISSUE_BODY,
         ],
