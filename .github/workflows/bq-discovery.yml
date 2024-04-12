@@ -1,5 +1,8 @@
 name: BQ Discovery Compare docs
-on: [push]
+on:
+  push:
+    paths:
+      - discoveries/bigquery.v2.json
 
 # TODO change repo
 # TODO change token to yoshi one
