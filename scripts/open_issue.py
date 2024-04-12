@@ -54,7 +54,7 @@ def has_changes() -> bool:
     #     ["git", "status", "-s"], capture_output=True
     # )
     # return str(result.stdout, "utf-8").strip() != ""
-    return True
+    return False
 
 # TODO(coleleah): update
 def setup() -> Optional[str]:
@@ -140,6 +140,8 @@ def create_issue() -> str:
             ISSUE_TITLE,
             "--body",
             ISSUE_BODY,
+            "--repo",
+            REPO_NAME
         ],
         capture_output=True,
         check=True,
