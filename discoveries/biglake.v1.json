@@ -10,7 +10,7 @@
   "parameters": {
     "access_token": {
       "type": "string",
-      "description": "OAuthaccess token.",
+      "description": "OAuth access token.",
       "location": "query"
     },
     "alt": {
