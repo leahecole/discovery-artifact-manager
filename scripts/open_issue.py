@@ -144,18 +144,25 @@ def create_issue() -> str:
         capture_output=True,
         check=True,
     )
-    issue_number: str = str(result.stdout, "utf-8").splitlines()[-1].split("/")[-1]
-    logging.info(f"Issue number is {issue_number}.")
-    for count in range(5):
-        result = subprocess.run(
-            ["gh", "issue", "view", issue_number, "--repo", REPO_NAME, "--json=number"]
-        )
-        if result.returncode == 0:
-            logging.info("Confirmed existence of new issue.")
-            break
-        logging.info("Couldn't confirm pull request yet ...")
-        time.sleep(count + 1)
-    time.sleep(5)
+    if result.stdout:
+        issue_number: str = str(result.stdout, "utf-8").splitlines()[-1].split("/")[-1]
+        logging.info(f"Issue number is {issue_number}.")
+        for count in range(5):
+            result = subprocess.run(
+                ["gh", "issue", "view", issue_number, "--repo", REPO_NAME, "--json=number"]
+            )
+            if result.returncode == 0:
+                logging.info("Confirmed existence of new issue.")
+                break
+            logging.info("Couldn't confirm pull request yet ...")
+            time.sleep(count + 1)
+        time.sleep(5)
+    elif result.stderr:
+        raise subprocess.CalledProcessError(
+                returncode = result.returncode,
+                cmd = result.args,
+                stderr = result.stderr
+                )
     return issue_number
 
 
