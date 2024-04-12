@@ -4,7 +4,7 @@ on: [push]
 # TODO change repo
 # TODO change token to yoshi one
 jobs:
-  update-discoveries:
+  open-issue:
     if: ${{ github.repository == 'leahecole/discovery-artifact-manager' }} 
     runs-on: ubuntu-latest
     env:
