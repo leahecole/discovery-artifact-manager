@@ -17,7 +17,6 @@ import os
 import subprocess
 import sys
 import time
-import uuid
 from typing import Optional
 
 
@@ -27,6 +26,7 @@ GIT_USER_NAME = "leahecole" #TODO(coleleah): update
 GIT_USER_EMAIL = "6719667+leahecole@users.noreply.github.com." #TODO(coleleah): update
 ISSUE_BODY = "Automatically created by the update_disco script." #TODO(coleleah): update
 MAIN_TOKEN_ENV = "GITHUB_TOKEN"
+ISSUE_TITLE = "Test issue" #TODO update
 
 # TODO(coleleah): update
 def main() -> None:
@@ -37,7 +37,7 @@ def main() -> None:
     if has_changes():
         print("Git changes detected. Opening pull request ...")
         github_token: Optional[str] = setup()
-        open_pr(github_token)
+        open_issue(github_token)
         print("Complete.")
     else:
         print("No git changes. Bailing.")
@@ -45,15 +45,16 @@ def main() -> None:
 
 # TODO(coleleah): could be used with Seth's thing? 
 def has_changes() -> bool:
-    """Determine if there are local changes
+    # """Determine if there are local changes
 
-    Returns:
-        bool -- True if there are local changes, or False otherwise
-    """
-    result: subprocess.CompletedProcess = subprocess.run(
-        ["git", "status", "-s"], capture_output=True
-    )
-    return str(result.stdout, "utf-8").strip() != ""
+    # Returns:
+    #     bool -- True if there are local changes, or False otherwise
+    # """
+    # result: subprocess.CompletedProcess = subprocess.run(
+    #     ["git", "status", "-s"], capture_output=True
+    # )
+    # return str(result.stdout, "utf-8").strip() != ""
+    return True
 
 # TODO(coleleah): update
 def setup() -> Optional[str]:
@@ -65,9 +66,9 @@ def setup() -> Optional[str]:
     ensure_git_identity()
     github_token: Optional[str] = os.getenv(MAIN_TOKEN_ENV)
     username: str = ensure_github_username()
-    fork_repo_name: str = REPO_NAME.replace("googleapis/", f"{username}/")
-    ensure_github_fork(fork_repo_name)
-    ensure_git_remote(github_token, username, fork_repo_name)
+    # fork_repo_name: str = REPO_NAME.replace("googleapis/", f"{username}/")
+    # ensure_github_fork(fork_repo_name)
+    # ensure_git_remote(github_token, username, fork_repo_name)
     return github_token
 
 # TODO(coleleah): update if needed
@@ -114,6 +115,7 @@ def open_issue(github_token: Optional[str]) -> None:
         github_token {Optional[str]} -- The github token, if provided
     """
     issue_number: str = create_issue()
+    logging.info(f"Opened issue {issue_number}")
 
 
 
@@ -121,41 +123,40 @@ def open_issue(github_token: Optional[str]) -> None:
 
 # TODO(coleleah): update
 def create_issue() -> str:
-    """Creates a pull request and waits for it to appear in the API
+    """Creates an issue and waits for it to appear in the API
 
     Returns:
-        str -- The pull request number as a string
+        str -- The issue number as a string
     """
-    logging.info("Creating pull request.")
+    logging.info("Creating issue.")
     result: subprocess.CompletedProcess
+    # TODO - properly assign
     result = subprocess.run(
         [
             "gh",
-            "pr",
+            "issue",
             "create",
-            "--repo",
-            REPO_NAME,
             "--title",
-            COMMIT_MESSAGE,
+            ISSUE_TITLE
             "--body",
-            PULL_REQUEST_BODY,
+            ISSUE_BODY,
         ],
         capture_output=True,
         check=True,
     )
-    pr_number: str = str(result.stdout, "utf-8").splitlines()[-1].split("/")[-1]
-    logging.info(f"Pull request number is {pr_number}.")
+    issue_number: str = str(result.stdout, "utf-8").splitlines()[-1].split("/")[-1]
+    logging.info(f"Issue number is {issue_number}.")
     for count in range(5):
         result = subprocess.run(
-            ["gh", "pr", "view", pr_number, "--repo", REPO_NAME, "--json=number"]
+            ["gh", "issue", "view", issue_number, "--repo", REPO_NAME, "--json=number"]
         )
         if result.returncode == 0:
-            logging.info("Confirmed existence of new pull request.")
+            logging.info("Confirmed existence of new issue.")
             break
         logging.info("Couldn't confirm pull request yet ...")
         time.sleep(count + 1)
     time.sleep(5)
-    return pr_number
+    return issue_number
 
 
 if __name__ == "__main__":
