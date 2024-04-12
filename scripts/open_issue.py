@@ -158,6 +158,7 @@ def create_issue() -> str:
             time.sleep(count + 1)
         time.sleep(5)
     elif result.stderr:
+        print("resultstderr", result.stderr)
         raise subprocess.CalledProcessError(
                 returncode = result.returncode,
                 cmd = result.args,
