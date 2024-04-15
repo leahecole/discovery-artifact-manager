@@ -145,7 +145,9 @@ def create_issue() -> str:
             "--label",
             "api: bigquery",
             "--label",
-            "type: process"
+            "type: process",
+            "--assignee",
+            "leahecole"
         ],
         capture_output=True,
         check=True,
