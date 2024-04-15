@@ -1,0 +1,8 @@
+# change assignee to googleapis/api-bigquery
+assign_issues_by:
+  - labels:
+    - 'api: bigquery'
+    to:
+    - shollyman
+    - leahecole
+
