@@ -19,7 +19,7 @@ import sys
 import time
 from typing import Optional
 
-
+#TODO renaem
 
 REPO_NAME = "leahecole/discovery-artifact-manager" #TODO(coleleah): update
 GIT_USER_NAME = "leahecole" #TODO(coleleah): update
@@ -54,7 +54,7 @@ def has_changes() -> bool:
     #     ["git", "status", "-s"], capture_output=True
     # )
     # return str(result.stdout, "utf-8").strip() != ""
-    return False
+    return True
 
 # TODO(coleleah): update
 def setup() -> Optional[str]:
@@ -141,7 +141,9 @@ def create_issue() -> str:
             "--body",
             ISSUE_BODY,
             "--repo",
-            REPO_NAME
+            REPO_NAME,
+            "--assignee",
+            "@googleapis/api-bigquery"
         ],
         capture_output=True,
         check=True,
