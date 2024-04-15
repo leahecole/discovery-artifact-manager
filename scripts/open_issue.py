@@ -142,8 +142,10 @@ def create_issue() -> str:
             ISSUE_BODY,
             "--repo",
             REPO_NAME,
-            "--assignee",
-            "@googleapis/api-bigquery"
+            "--label",
+            "api: bigquery",
+            "--label",
+            "type: process"
         ],
         capture_output=True,
         check=True,
