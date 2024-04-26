@@ -25,4 +25,4 @@ jobs:
           python-version: "3.10"
       - name: execute
         run: |
-           python scripts/discovery_comparer/discovery_test.py
+          cd scripts/discovery_comparer && python discovery_comparer/discovery_test.py
