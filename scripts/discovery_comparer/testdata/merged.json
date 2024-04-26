@@ -1,0 +1,58 @@
+{
+    "test": "test field",
+    "documentationLink": "https://cloud.google.com/bigquery/",
+    "servicePath": "bigquery/v2/",
+    "basePath": "/bigquery/v2/",
+    "baseUrl": "https://bigquery.googleapis.com/bigquery/v/",
+    "batchPath": "batch/bigquery/v2",
+    "resources": {
+      "resourceA": {
+        "methods": {
+          "get": {
+            "id": "bigquery.datasets.get",
+            "path": "projects/{projectId}/datasets/{datasetId}"
+          }
+        }
+      },
+      "resourceOpOnly": {
+        "methods": {
+          "get": {
+            "id": "bigquery.oponly.get",
+            "path": "/projects/{+projectId}/oponly/{+datasetId}",
+            "flatPath": "/projects/{projectsId}/oponly/{datasetsId}"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "test": {},
+      "DatasetAccessEntry": {
+        "id": "DatasetAccessEntry",
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "$ref": "DatasetReference",
+            "description": "[Required] The dataset this entry applies to."
+          },
+          "targetTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enumDescriptions": [
+                "Do not use. You must set a target type explicitly.",
+                "This entry applies to views in the dataset.",
+                "This entry applies to routines in the dataset."
+              ],
+              "enum": [
+                "TARGET_TYPE_UNSPECIFIED",
+                "VIEWS",
+                "ROUTINES"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "rootUrl": "https://bigquery.googleapis.com/",
+    "mtlsRootUrl": "https://bigquery.mtls.googleapis.com/"
+  }

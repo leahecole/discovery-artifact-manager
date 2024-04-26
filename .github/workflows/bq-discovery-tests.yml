@@ -4,8 +4,7 @@ on:
     branches:
       - master
     paths:
-      - scripts/comparedocs
-
+      - scripts/discovery_comparer
 # TODO change repo
 # TODO change token to yoshi one
 jobs:

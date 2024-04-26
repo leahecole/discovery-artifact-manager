@@ -1,0 +1,39 @@
+{
+    "revision": "1234",
+    "test": "test field",
+    "servicePath": "",
+    "resources": {
+      "resourceA": {
+        "methods": {
+          "get": {
+            "id": "bigquery.datasets.get",
+            "path": "projects/{projectId}/datasets/{datasetId}"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "DatasetAccessEntry": {
+        "id": "DatasetAccessEntry",
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "$ref": "DatasetReference",
+            "description": "[Required] The dataset this entry applies to."
+          },
+          "target_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "targetType": {
+                  "type": "string",
+                  "description": "[Required] Which resources in the dataset this entry applies to. Currently, only views are supported, but additional target types may be added in the future. Possible values: VIEWS: This entry applies to all views in the dataset."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

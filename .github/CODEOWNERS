@@ -7,5 +7,6 @@
 # Default owner
 * @googleapis/github-automation
 
+# TODO(coleleah) update codeowners for the compare_docs
 # Automated discovery document updates
 /discoveries/ @yoshi-approver

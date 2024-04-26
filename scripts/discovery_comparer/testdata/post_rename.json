@@ -1,0 +1,75 @@
+
+{
+    "rootUrl": "https://bigquery.googleapis.com/",
+    "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+    "servicePath": "bigquery/v2",
+    "basePath": "/bigquery/v2",
+    "baseUrl": "https://bigquery.googleapis.com/bigquery/v",
+    "revision": "4321",
+    "resources": {
+      "some_resource": {
+        "methods": {
+          "get": {
+            "id": "bigquery.thing.get",
+            "path": "/bigquery/v2/projects/{+projectId}/oponly/{+datasetId}",
+            "flatPath": "/bigquery/v2/projects/{projectsId}/oponly/{datasetsId}",
+            "request": {
+              "$ref": "NewType"
+            },
+            "response": {
+              "$ref": "ExampleResponse"
+            }
+          },
+          "delete": {
+            "id": "bigquery.thing.delete",
+            "path": "/bigquery/v2/projects/{+projectId}/oponly/{+datasetId}",
+            "flatPath": "/bigquery/v2/projects/{projectsId}/oponly/{datasetsId}",
+            "request": {
+              "$ref": "ExampleRequest"
+            },
+            "response": {
+              "$ref": "ExampleResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "NewType": {
+        "id": "NewType",
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "$ref": "DatasetReference",
+            "description": "[Required] The dataset this entry applies to."
+          },
+          "target_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "targetType": {
+                  "type": "string",
+                  "description": "[Required] Which resources in the dataset this entry applies to. Currently, only views are supported, but additional target types may be added in the future. Possible values: VIEWS: This entry applies to all views in the dataset."
+                }
+              }
+            }
+          }
+        }
+      },
+      "EnclosingType": {
+        "id": "EnclosingType",
+        "type": "object",
+        "properties": {
+          "linked_thing": {
+            "$ref": "NewType",
+            "description": "[Required] The dataset this entry applies to."
+          },
+          "field2": {
+            "type": "string",
+            "description": "SomeType"
+          }
+        }
+      }
+    }
+  }

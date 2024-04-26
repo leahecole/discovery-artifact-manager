@@ -1,0 +1,31 @@
+{
+    "rootUrl": "https://bigquery.googleapis.com/",
+    "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+    "servicePath": "bigquery/v2",
+    "basePath": "/bigquery/v2",
+    "baseUrl": "https://bigquery.googleapis.com/bigquery/v",
+    "revision": "4321",
+    "resources": {
+      "resourceA": {
+        "methods": {
+          "get": {
+            "id": "bigquery.datasets.get",
+            "path": "bigquery/v2/projects/{+projectId}/datasets/{+datasetId}",
+            "flatPath": "bigquery/v2/projects/{projectsId}/datasets/{datasetsId}"
+          }
+        }
+      },
+      "resourceOpOnly": {
+        "methods": {
+          "get": {
+            "id": "bigquery.oponly.get",
+            "path": "/bigquery/v2/projects/{+projectId}/oponly/{+datasetId}",
+            "flatPath": "/bigquery/v2/projects/{projectsId}/oponly/{datasetsId}"
+          }
+        }
+      }
+    },
+    "schemas": {
+      "test": {}
+    }
+  }
