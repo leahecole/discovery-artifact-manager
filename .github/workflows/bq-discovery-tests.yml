@@ -3,8 +3,8 @@ on:
   pull_request:
     branches:
       - bq-experiment #TODO change to be master
-    paths:
-      - scripts/discovery_comparer
+
+# TODO change to only be on changed paths
 # TODO change repo
 # TODO change token to yoshi one
 jobs:
