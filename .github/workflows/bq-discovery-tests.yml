@@ -1,6 +1,8 @@
 name: BQ Discovery Compare docs tests
 on:
-  push:
+  pull_request:
+    branches:
+      - master
     paths:
       - scripts/comparedocs
 
