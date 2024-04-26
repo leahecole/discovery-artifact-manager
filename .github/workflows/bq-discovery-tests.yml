@@ -2,7 +2,7 @@ name: BQ Discovery Compare docs tests
 on:
   pull_request:
     branches:
-      - master
+      - bq-experiment #TODO change to be master
     paths:
       - scripts/discovery_comparer
 # TODO change repo
