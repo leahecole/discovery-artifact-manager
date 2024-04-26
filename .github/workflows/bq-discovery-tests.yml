@@ -1,0 +1,28 @@
+name: BQ Discovery Compare docs tests
+
+on:
+  pull_request:
+    branches:
+      - bq-experiment # TODO change to master
+
+# TODO change to only be on changed paths
+# TODO change repo
+# TODO change token to yoshi one
+jobs:
+  discovery-comparerer-test:
+    if: ${{ github.repository == 'leahecole/discovery-artifact-manager' }} 
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Install Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: execute
+        run: |
+           python scripts/comparedocs/discovery_comparer/discovery_test.py
