@@ -26,4 +26,3 @@ jobs:
       - name: execute
         run: |
           cd scripts/discovery_comparer && python discovery_test.py
-
