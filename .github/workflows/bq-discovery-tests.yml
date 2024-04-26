@@ -1,4 +1,5 @@
 name: BQ Discovery Compare docs tests
+
 on:
   pull_request:
     branches:
