@@ -8,7 +8,7 @@ on:
 # TODO change repo
 # TODO change token to yoshi one
 jobs:
-  open-issue:
+  discovery-comparerer-test:
     if: ${{ github.repository == 'leahecole/discovery-artifact-manager' }} 
     runs-on: ubuntu-latest
     permissions:
